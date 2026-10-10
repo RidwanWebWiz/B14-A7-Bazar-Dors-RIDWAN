@@ -56,7 +56,7 @@ export default function Navbar({ user = null }: NavbarProps) {
                 className="btn btn-ghost btn-sm gap-2 normal-case font-medium text-slate-700 hover:bg-slate-100 rounded-full py-1.5 px-3.5 border border-slate-200 shadow-2xs cursor-pointer"
               >
                 <Image
-                  src={user.avatar || "https://i.pravatar.cc/150?img=68"}
+                  src={user.avatar || ""}
                   alt={user.name}
                   width={28}
                   height={28}
@@ -84,13 +84,13 @@ export default function Navbar({ user = null }: NavbarProps) {
             <div className="flex items-center gap-2.5">
               <Link
                 href="/signin"
-                className="btn btn-sm btn-ghost font-semibold text-slate-700 hover:text-emerald-600 hover:bg-emerald-50/60 rounded-xl px-4 transition-all"
+                className="btn btn-sm bg-white hover:bg-slate-50 text-slate-700 font-semibold px-5 rounded-md border border-slate-200/80 shadow-2xs hover:shadow-xs transition-all"
               >
                 সাইন ইন
               </Link>
               <Link
                 href="/signup"
-                className="btn btn-sm bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-5 rounded-xl border-none shadow-sm hover:shadow transition-all"
+                className="btn btn-sm bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-5 rounded-md border-none shadow-sm hover:shadow transition-all"
               >
                 সাইন আপ
               </Link>
