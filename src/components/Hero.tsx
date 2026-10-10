@@ -4,24 +4,23 @@ import Image from "next/image";
 export default function Hero() {
   return (
     <div className="bg-[#f7f9f6] border border-slate-200/80 rounded-3xl p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 font-bangla shadow-xs">
-      {/* Left Content Area */}
-      <div className="space-y-4 max-w-xl text-left">
-        {/* Date / Status Pill */}
+       <div className="space-y-4 max-w-xl text-left">
+        
         <div className="inline-flex items-center bg-emerald-100/70 text-emerald-800 text-xs font-semibold px-3.5 py-1.5 rounded-full">
           শনিবার, ১০ অক্টোবর, ২০২৬
         </div>
 
-        {/* Headline */}
+       
         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-snug">
           আজকের বাজারের দাম এক নজরে
         </h1>
 
-        {/* Description */}
+      
         <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
           চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক বিস্তারিত, গড়, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।
         </p>
 
-        {/* Action Button */}
+     
         <div className="pt-2">
           <Link
             href="#সব-পণ্য"
@@ -32,10 +31,10 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Right Side Illustration Image Container */}
+      
       <div className="w-full md:w-auto flex justify-center items-center">
         <div className="relative w-64 h-56 sm:w-80 sm:h-64 flex items-center justify-center">
-          {/* Replace src with your image path (e.g., "/images/hero-basket.png") */}
+          
           <Image
             src="/image/bazar-hero 1.png" 
             alt="Market Fruit Basket"

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { formatBanglaPrice, formatChangeBadge } from "@/lib/utils";
 import categories from "@/data/categories.json";
-import products from "@/data/products.json"; // 👈 Import products directly for the sliding ticker
+import products from "@/data/products.json"; 
 
 interface NavbarProps {
   user?: {
@@ -17,7 +17,6 @@ interface NavbarProps {
 export default function Navbar({ user = null }: NavbarProps) {
   const pathname = usePathname();
 
-  // Map products for the 3rd layer sliding ticker strip
   const tickerItems = products.map((p) => ({
     id: p.id,
     emoji: p.image,
@@ -31,9 +30,9 @@ export default function Navbar({ user = null }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs font-bangla">
-      {/* 🔴 LAYER 1: Top Bar (Logo, Date & Auth Buttons) */}
+     
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between border-b border-slate-100">
-        {/* Left Logo + Title + Date */}
+        
         <Link href="/" className="flex items-center gap-3 group">
           <div className="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white text-xl shadow-sm group-hover:bg-emerald-700 transition-colors">
             🛒
@@ -48,7 +47,7 @@ export default function Navbar({ user = null }: NavbarProps) {
           </div>
         </Link>
 
-        {/* Right Corner: Beautified Sign In / Sign Up OR User Profile */}
+     
         <div>
           {user ? (
             <div className="dropdown dropdown-end">
@@ -100,7 +99,7 @@ export default function Navbar({ user = null }: NavbarProps) {
         </div>
       </div>
 
-      {/* 🟢 LAYER 2: Category Navigation Links */}
+      
       <div className="max-w-6xl mx-auto px-4 py-2.5 flex items-center gap-3 overflow-x-auto no-scrollbar border-b border-slate-100 text-sm">
         {categories.map((cat) => {
           const isActive = pathname === `/category/${cat.slug}`;
@@ -121,7 +120,7 @@ export default function Navbar({ user = null }: NavbarProps) {
         })}
       </div>
 
-      {/* 🔵 LAYER 3: Sliding / Infinite Scrolling Price Ticker */}
+     
       <div className="bg-slate-50/90 border-t border-slate-100 overflow-hidden py-2 relative">
         <div className="animate-marquee whitespace-nowrap flex items-center gap-4">
           {marqueeList.map((item, index) => {

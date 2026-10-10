@@ -1,4 +1,4 @@
-// Convert English numbers to Bengali numerals
+
 export function convertToBengaliNumber(num: number | string): string {
   const bengaliDigits: { [key: string]: string } = {
     "0": "০",
@@ -26,7 +26,6 @@ export function formatBanglaPrice(price: number): string {
   return convertToBengaliNumber(price);
 }
 
-// Format the percentage badge (e.g., ▲ ৯.০% or ▼ ২.৯%)
 export function formatChangeBadge(change: number) {
   const isUp = change > 0;
   const isDown = change < 0;

@@ -3,7 +3,7 @@ import { inter, hindSiliguri } from "@/lib/fonts";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/Navbar";
 // import Footer from "@/components/Footer";
-import "./globals.css"; // 👈 THIS IS CRITICAL FOR STYLING
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "বাজার দর | BazarDor",
