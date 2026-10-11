@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import ProductCard from "@/components/ProductCard";
+import SkeletonLoader from "@/components/SkeletonLoader";
 import categories from "@/data/categories.json";
 import products from "@/data/products.json";
 
@@ -12,6 +13,7 @@ export default function CategoryPage() {
   const slug = params?.slug as string;
 
   const [sortOption, setSortOption] = useState("default");
+  const [isPending, startTransition] = useTransition();
 
   const category = categories.find((c) => c.slug === slug);
 
@@ -19,7 +21,7 @@ export default function CategoryPage() {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4 font-bangla space-y-4">
         <div className="text-6xl">🔍</div>
-        <h2 className="text-2xl font-bold text-slate-900">পাতাটি পাওয়া যায়নি</h2>
+        <h2 className="text-2xl font-bold text-slate-900">পাতাটি পাওয়া যায়নি</h2>
         <Link href="/" className="btn bg-emerald-600 text-white">
           হোম পেজে ফিরে যান
         </Link>
@@ -62,7 +64,11 @@ export default function CategoryPage() {
           <span className="text-sm font-medium text-slate-600">সাজান:</span>
           <select
             value={sortOption}
-            onChange={(e) => setSortOption(e.target.value)}
+            onChange={(e) => {
+              startTransition(() => {
+                setSortOption(e.target.value);
+              });
+            }}
             className="select select-bordered select-sm bg-white border-slate-300 text-slate-700 font-medium rounded-lg"
           >
             <option value="default">ডিফল্ট</option>
@@ -72,18 +78,22 @@ export default function CategoryPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {sortedProducts.map((p) => (
-          <ProductCard
-            key={p.id}
-            slug={p.slug}
-            name={p.nameBn}
-            emoji={p.image}
-            unit={p.unit}
-            price={p.today}
-            change={getSignedChange(p)}
-          />
-        ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {isPending
+          ? Array.from({ length: 6 }).map((_, idx) => (
+              <SkeletonLoader key={idx} />
+            ))
+          : sortedProducts.map((p) => (
+              <ProductCard
+                key={p.id}
+                slug={p.slug}
+                name={p.nameBn}
+                emoji={p.image}
+                unit={p.unit}
+                price={p.today}
+                change={getSignedChange(p)}
+              />
+            ))}
       </div>
     </div>
   );

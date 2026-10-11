@@ -23,7 +23,6 @@ export default function Home() {
     <div className="space-y-12 font-bangla py-6">
       <Hero />
 
-      {/* Section A — Risers (3 Columns) */}
       <section className="space-y-4">
         <div className="flex items-center gap-2 border-b border-slate-200 pb-2">
           <span className="text-xl">▲</span>
@@ -44,7 +43,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section B — Fallers (3 Columns) */}
       <section className="space-y-4">
         <div className="flex items-center gap-2 border-b border-slate-200 pb-2">
           <span className="text-xl text-emerald-600">▼</span>
@@ -65,7 +63,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section C — All Products (3 Columns) */}
       <section id="সব-পণ্য" className="space-y-4 pt-4">
         <div className="border-b border-slate-200 pb-2">
           <h2 className="text-2xl font-bold text-slate-900">সব পণ্য</h2>

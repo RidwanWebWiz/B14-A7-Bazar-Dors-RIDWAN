@@ -5,7 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { formatBanglaPrice, formatChangeBadge } from "@/lib/utils";
 import categories from "@/data/categories.json";
-import products from "@/data/products.json"; 
+import products from "@/data/products.json";
 
 interface NavbarProps {
   user?: {
@@ -30,9 +30,8 @@ export default function Navbar({ user = null }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs font-bangla">
-     
+      {/* Top Header Row */}
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between border-b border-slate-100">
-        
         <Link href="/" className="flex items-center gap-3 group">
           <div className="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white text-xl shadow-sm group-hover:bg-emerald-700 transition-colors">
             🛒
@@ -42,12 +41,11 @@ export default function Navbar({ user = null }: NavbarProps) {
               বাজার দর
             </h1>
             <p className="text-xs text-slate-500">
-              শনিবার, ১০ অক্টোবর, ২০২৬
+              রবিবার, ১১ অক্টোবর, ২০২৬
             </p>
           </div>
         </Link>
 
-     
         <div>
           {user ? (
             <div className="dropdown dropdown-end">
@@ -56,7 +54,7 @@ export default function Navbar({ user = null }: NavbarProps) {
                 className="btn btn-ghost btn-sm gap-2 normal-case font-medium text-slate-700 hover:bg-slate-100 rounded-full py-1.5 px-3.5 border border-slate-200 shadow-2xs cursor-pointer"
               >
                 <Image
-                  src={user.avatar || ""}
+                  src={user.avatar || "/avatar.jpg"}
                   alt={user.name}
                   width={28}
                   height={28}
@@ -70,10 +68,14 @@ export default function Navbar({ user = null }: NavbarProps) {
                 className="dropdown-content menu p-2 shadow-xl bg-base-100 rounded-2xl w-48 border border-slate-100 mt-2 font-medium"
               >
                 <li>
-                  <Link href="/profile" className="rounded-lg">মাই প্রোফাইল</Link>
+                  <Link href="/profile" className="rounded-lg">
+                    মাই প্রোফাইল
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/profile/update" className="rounded-lg">তথ্য আপডেট করুন</Link>
+                  <Link href="/profile/update" className="rounded-lg">
+                    তথ্য আপডেট করুন
+                  </Link>
                 </li>
                 <li className="border-t border-slate-100 mt-1 pt-1">
                   <button className="text-error rounded-lg">সাইন আউট</button>
@@ -99,7 +101,6 @@ export default function Navbar({ user = null }: NavbarProps) {
         </div>
       </div>
 
-      
       <div className="max-w-6xl mx-auto px-4 py-2.5 flex items-center gap-3 overflow-x-auto no-scrollbar border-b border-slate-100 text-sm">
         {categories.map((cat) => {
           const isActive = pathname === `/category/${cat.slug}`;
@@ -120,7 +121,7 @@ export default function Navbar({ user = null }: NavbarProps) {
         })}
       </div>
 
-     
+      
       <div className="bg-slate-50/90 border-t border-slate-100 overflow-hidden py-2 relative">
         <div className="animate-marquee whitespace-nowrap flex items-center gap-4">
           {marqueeList.map((item, index) => {

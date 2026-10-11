@@ -11,7 +11,6 @@ export default function ProductDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
 
-  // Find selected product from JSON data
   const product = products.find((p) => p.slug === slug);
 
   if (!product) {
@@ -45,7 +44,7 @@ export default function ProductDetailPage() {
   const signedChange = getSignedChange(product);
   const badge = formatChangeBadge(signedChange);
 
-  // Mock regional market price data for the table
+
   const marketPrices = [
     { name: "মার্কেট বাজার", division: "ময়মনসিংহ", min: 59, max: 65, avg: 62 },
     { name: "সদর বাজার", division: "রাজশাহী", min: 60, max: 66, avg: 63 },
@@ -67,7 +66,7 @@ export default function ProductDetailPage() {
 
   return (
     <div className="space-y-8 font-bangla py-4">
-      {/* Breadcrumb Navigation */}
+      
       <nav className="text-sm text-slate-500 flex items-center gap-2">
         <Link href="/" className="hover:text-emerald-600 transition-colors">
           হোম
@@ -87,7 +86,6 @@ export default function ProductDetailPage() {
         <span className="text-slate-900 font-semibold">{product.nameBn}</span>
       </nav>
 
-      {/* Main Product Overview Card */}
       <div className="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div className="flex items-center gap-5">
           <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-4xl shrink-0 shadow-2xs relative">
@@ -121,7 +119,6 @@ export default function ProductDetailPage() {
           </div>
         </div>
 
-        {/* Right Price Box */}
         <div className="bg-slate-50 border border-slate-200/60 rounded-2xl p-4 sm:px-6 sm:py-4 flex flex-col items-center md:items-end w-full md:w-auto">
           <span className="text-xs text-slate-500 font-medium">আজকের দাম</span>
           <span className="text-3xl font-black text-slate-900 my-1">
@@ -136,11 +133,10 @@ export default function ProductDetailPage() {
         </div>
       </div>
 
-      {/* Summary Cards Section (Minimum, Maximum, Average) */}
       <div className="space-y-4">
         <h2 className="text-xl font-bold text-slate-900">দামের সারসংক্ষেপ</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {/* Min Price Card */}
+          
           <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-2xs space-y-2">
             <span className="text-xs text-slate-500 font-medium block">সর্বনিম্ন দাম</span>
             <div className="text-2xl font-extrabold text-emerald-600">
@@ -149,7 +145,6 @@ export default function ProductDetailPage() {
             <p className="text-xs text-slate-400">সবচেয়ে কম দামের বাজার</p>
           </div>
 
-          {/* Max Price Card */}
           <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-2xs space-y-2">
             <span className="text-xs text-slate-500 font-medium block">সর্বাধিক দাম</span>
             <div className="text-2xl font-extrabold text-red-600">
@@ -158,7 +153,6 @@ export default function ProductDetailPage() {
             <p className="text-xs text-slate-400">সবচেয়ে বেশি দামের বাজার</p>
           </div>
 
-          {/* Average Price Card */}
           <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-2xs space-y-2">
             <span className="text-xs text-slate-500 font-medium block">গড় দাম</span>
             <div className="text-2xl font-extrabold text-emerald-600">
@@ -169,7 +163,6 @@ export default function ProductDetailPage() {
         </div>
       </div>
 
-      {/* Regional Market Prices Table */}
       <div className="space-y-4 pt-2">
         <h2 className="text-xl font-bold text-slate-900">বাজারভিত্তিক আজকের দাম</h2>
         <div className="bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-2xs">
