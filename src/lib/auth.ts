@@ -1,10 +1,22 @@
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
-import { MongoClient } from "mongodb";
+import { MongoClient, Db } from "mongodb";
 import nodemailer from "nodemailer";
 
-const client = new MongoClient(process.env.MONGODB_URI!);
-const db = client.db();
+let dbInstance: Db | null = null;
+
+function getDb(): Db {
+  if (!dbInstance) {
+    const uri = process.env.MONGODB_URI;
+    if (!uri) {
+      // Return a dummy object during build time if URI is not yet set
+      return {} as Db;
+    }
+    const client = new MongoClient(uri);
+    dbInstance = client.db();
+  }
+  return dbInstance;
+}
 
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_SERVER_HOST,
@@ -16,7 +28,7 @@ const transporter = nodemailer.createTransport({
 });
 
 export const auth = betterAuth({
-  database: mongodbAdapter(db),
+  database: mongodbAdapter(getDb()),
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,

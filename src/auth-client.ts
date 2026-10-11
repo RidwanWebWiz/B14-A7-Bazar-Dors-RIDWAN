@@ -9,5 +9,5 @@ export const {
   requestPasswordReset,
   resetPassword
 } = createAuthClient({
-  baseURL: "http://localhost:3000",
+  baseURL: process.env.NEXT_PUBLIC_BETTER_AUTH_URL || "http://localhost:3000",
 });
