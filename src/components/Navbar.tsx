@@ -6,16 +6,16 @@ import { usePathname } from "next/navigation";
 import { formatBanglaPrice, formatChangeBadge } from "@/lib/utils";
 import categories from "@/data/categories.json";
 import products from "@/data/products.json";
+import { useSession, signOut } from "@/auth-client";
 
-interface NavbarProps {
-  user?: {
-    name: string;
-    avatar?: string;
-  } | null;
-}
-
-export default function Navbar({ user = null }: NavbarProps) {
+export default function Navbar() {
   const pathname = usePathname();
+  const { data: session, isPending } = useSession();
+
+  const user = session?.user ? {
+    name: session.user.name,
+    avatar: session.user.image || undefined,
+  } : null;
 
   const tickerItems = products.map((p) => ({
     id: p.id,
@@ -29,8 +29,7 @@ export default function Navbar({ user = null }: NavbarProps) {
   const marqueeList = [...tickerItems, ...tickerItems];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs font-bangla">
-      {/* Top Header Row */}
+    <header suppressHydrationWarning className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs font-bangla">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between border-b border-slate-100">
         <Link href="/" className="flex items-center gap-3 group">
           <div className="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white text-xl shadow-sm group-hover:bg-emerald-700 transition-colors">
@@ -47,7 +46,9 @@ export default function Navbar({ user = null }: NavbarProps) {
         </Link>
 
         <div>
-          {user ? (
+          {isPending ? (
+            <div className="w-24 h-9 bg-slate-100 animate-pulse rounded-full"></div>
+          ) : user ? (
             <div className="dropdown dropdown-end">
               <label
                 tabIndex={0}
@@ -78,7 +79,7 @@ export default function Navbar({ user = null }: NavbarProps) {
                   </Link>
                 </li>
                 <li className="border-t border-slate-100 mt-1 pt-1">
-                  <button className="text-error rounded-lg">সাইন আউট</button>
+                  <button onClick={() => signOut()} className="text-error rounded-lg">সাইন আউট</button>
                 </li>
               </ul>
             </div>
@@ -121,7 +122,6 @@ export default function Navbar({ user = null }: NavbarProps) {
         })}
       </div>
 
-      
       <div className="bg-slate-50/90 border-t border-slate-100 overflow-hidden py-2 relative">
         <div className="animate-marquee whitespace-nowrap flex items-center gap-4">
           {marqueeList.map((item, index) => {

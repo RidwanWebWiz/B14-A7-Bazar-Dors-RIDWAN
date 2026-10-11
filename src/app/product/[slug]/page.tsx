@@ -165,11 +165,11 @@ export default function ProductDetailPage() {
 
       <div className="space-y-4 pt-2">
         <h2 className="text-xl font-bold text-slate-900">বাজারভিত্তিক আজকের দাম</h2>
-        <div className="bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-2xs">
+        <div className="bg-white border border-slate-500/80 rounded-2xl overflow-hidden shadow-2xs">
           <div className="overflow-x-auto">
             <table className="w-full text-right sm:text-left border-collapse">
               <thead>
-                <tr className="border-b border-slate-200 bg-slate-50 text-slate-600 text-xs font-semibold">
+                <tr className="border-b border-slate-500 bg-slate-50 text-slate-600 text-xs font-semibold">
                   <th className="py-3.5 px-4 text-left">বাজার</th>
                   <th className="py-3.5 px-4 text-left">বিভাগ</th>
                   <th className="py-3.5 px-4 text-left">সর্বনিম্ন</th>
@@ -177,7 +177,7 @@ export default function ProductDetailPage() {
                   <th className="py-3.5 px-4 text-left">গড়</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 text-sm text-slate-800">
+              <tbody className="divide-y divide-slate-600 text-sm text-slate-800">
                 {marketPrices.map((market, idx) => (
                   <tr key={idx} className="hover:bg-slate-50/60 transition-colors">
                     <td className="py-3.5 px-4 font-medium text-slate-900">{market.name}</td>
